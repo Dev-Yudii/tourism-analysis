@@ -97,4 +97,4 @@ The ETL is complete. Phase 3 will take this data into Power BI to extract insigh
 **Fabio Iamashita** — [LinkedIn](https://linkedin.com/in/fabio-iamashita)
 
 
-* Note: If the source link returns a 403 error, please refresh the page (F5)
+\* Note: If the source link returns a 403 error, please refresh the page (F5)
