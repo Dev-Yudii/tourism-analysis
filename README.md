@@ -2,7 +2,7 @@
 
 An end-to-end data project consolidating 35 years of international tourism records from Brazil's Ministry of Tourism — from a first exploration of a single year to a scalable ETL pipeline producing analysis-ready data.
 
-**Source:** [Ministério do Turismo — Dados Abertos](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil)
+**Source:** [Ministério do Turismo — Dados Abertos](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) *
 
 ---
 
@@ -84,7 +84,7 @@ pip install pandas numpy seaborn matplotlib
 pip install pandas numpy pyarrow fastparquet
 ```
 
-Download the raw CSVs from the [source](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil), place them in `data/raw/`, and run the notebooks in order.
+Download the raw CSVs from the [source](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) *, place them in `data/raw/`, and run the notebooks in order.
 
 ---
 
@@ -95,3 +95,6 @@ The ETL is complete. Phase 3 will take this data into Power BI to extract insigh
 ---
 
 **Fabio Iamashita** — [LinkedIn](https://linkedin.com/in/fabio-iamashita)
+
+
+* Note: If the source link returns a 403 error, please refresh the page (F5)
