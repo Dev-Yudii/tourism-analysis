@@ -1,6 +1,6 @@
 # Brazilian Tourism Data Pipeline (1989–2024)
 
-An end-to-end data project consolidating 35 years of international tourism records from Brazil's Ministry of Tourism — from a first exploration of a single year to a scalable ETL pipeline producing analysis-ready data.
+An end-to-end data project consolidating 35 years of international tourism records from Brazil's Ministry of Tourism — from a first exploration of a single year to a reproducible ETL pipeline producing analysis-ready data.
 
 **Source:** [Ministério do Turismo — Dados Abertos](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) *
 
@@ -29,7 +29,7 @@ Some findings from 1989 worth noting: Argentina dominated arrivals by a wide mar
 
 ---
 
-## Phase 2 — Scalable Pipeline (1989–2024)
+## Phase 2 — ETL Pipeline (1989–2024)
 
 `notebooks/tourism_1989_2024.ipynb`
 
@@ -62,26 +62,36 @@ The pipeline produces a single consolidated dataset of ~953,000 rows across 8 co
 
 ```
 ├── data/
-│   ├── raw/               # Original CSVs from Ministério do Turismo (not versioned)
-│   └── processed/         # Pipeline outputs (generated, not versioned)
+│   ├── raw/               # Original CSVs from Ministério do Turismo
+│   └── processed/         # Generated pipeline outputs
 ├── notebooks/
 │   ├── Exploration_1989.ipynb
 │   └── tourism_1989_2024.ipynb
-└── README.md
+├── .gitignore
+├── .python-version
+├── pyproject.toml
+├── README.md
+└── uv.lock
 ```
 
 ---
 
 ## How to Run
 
-**Requirements:** Python 3.12, Jupyter
+### Requirements
+
+- Python 3.12
+- uv
+
+Clone the repository and navigate to the project directory:
 
 ```bash
-# Phase 1 (Exploration)
-pip install pandas numpy seaborn matplotlib
-
-# Phase 2 (Pipeline)
-pip install pandas numpy pyarrow fastparquet
+git clone https://github.com/Dev-Yudii/tourism-analysis.git
+cd tourism-analysis
+```
+Install the project dependencies:
+```bash
+uv sync
 ```
 
 Download the raw CSVs from the [source](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) *, place them in `data/raw/`, and run the notebooks in order.
@@ -93,8 +103,6 @@ Download the raw CSVs from the [source](https://dados.gov.br/dados/conjuntos-dad
 The ETL is complete. Phase 3 will take this data into Power BI to extract insights from the full historical series — pandemic impact, long-term growth trends, shifts in country of origin, and whether the patterns from 1989 held across 35 years.
 
 ---
-
-**Fabio Iamashita** — [LinkedIn](https://linkedin.com/in/fabio-iamashita)
 
 
 \* Note: If the source link returns a 403 error, please refresh the page (F5)

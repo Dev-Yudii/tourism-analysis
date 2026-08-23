@@ -1,0 +1,18 @@
+[project]
+name = "tourism-analysis"
+version = "0.1.0"
+description = "ETL and exploratory analysis of international tourism arrivals to Brazil"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
+    "pyarrow>=25.0.1",
+    "seaborn>=0.13.2",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+]
