@@ -1,12 +1,29 @@
 # Brazilian Tourism Data Pipeline (1989–2024)
 
-An end-to-end data project consolidating 35 years of international tourism records from Brazil's Ministry of Tourism — from a first exploration of a single year to a reproducible ETL pipeline and an interactive Power BI analysis.
+An end-to-end data project built from 36 annual datasets of international tourism arrivals in Brazil, covering the workflow from initial data exploration and historical ETL to Power BI analysis.
+
+The project began with a single-year dataset and evolved into a reproducible pipeline capable of processing the complete historical series from 1989 to 2024.
+
+## The analysis
+
+The historical series reveals how international tourism to Brazil changed over more than three decades, including periods of growth, structural changes and the sharp disruption caused by the COVID-19 pandemic.
+
+![International tourism arrivals in Brazil over time](powerbi/tourism-arrivals-over-time.png)
+
+The chart above represents the starting point of the analysis: understanding how the volume of international tourist arrivals evolved throughout the historical series.
+
+The complete interactive analysis is available in the Power BI report.
+
+**[View the complete Power BI analysis (PDF)](powerbi/tourism-analysis.pdf)** <br>
+**[Open the Power BI report (PBIX)](powerbi/tourism-analysis.pbix)**
+
+---
 
 ## How this project came together
 
-This project started as a simple exploration of a single tourism dataset and gradually evolved as I wanted to understand not only the data itself, but also how to build a process capable of handling the complete historical series.
+This project started as a simple exploration of a single tourism dataset. After understanding its structure and identifying some of its characteristics, I expanded the project to the complete historical series.
 
-The project is divided into three phases:
+The project is organized into three phases:
 
 * **Phase 1 — Exploration:** understanding the structure and characteristics of the 1989 dataset.
 * **Phase 2 — ETL Pipeline:** processing and consolidating the historical data from 1989 to 2024.
@@ -18,7 +35,7 @@ The project is divided into three phases:
 
 The project began with the exploration of the 1989 dataset in `notebooks/Exploration_1989.ipynb`.
 
-The original file contained approximately 17,000 records across 12 columns. During the initial exploration, I identified characteristics that would later influence the data processing pipeline:
+The original file contained approximately **17,000 records across 12 columns**. During the initial exploration, I identified characteristics that would later influence the data processing pipeline:
 
 * The dataset used **Latin-1 encoding**.
 * The `Chegadas` column contained **588 missing values**.
@@ -28,7 +45,7 @@ The original file contained approximately 17,000 records across 12 columns. Duri
 * The South region played an important role as a gateway for international arrivals.
 * Arrivals showed noticeable seasonality, especially around January and February.
 
-This first analysis was useful not only for generating insights, but also for understanding the inconsistencies and variations that would need to be handled when working with the complete historical series.
+This first analysis was important not only for generating initial insights, but also for understanding the variations and inconsistencies that would need to be considered when processing the complete historical series.
 
 ---
 
@@ -58,11 +75,11 @@ The ETL notebook intentionally contains no charts. Once the historical data was 
 The pipeline generates several outputs from the consolidated data:
 
 * **Parquet:** partitioned by year for efficient analytical processing.
-* **SQLite:** stored as `fact_tourism_arrivals`, providing a structured database version of the consolidated dataset.
+* **SQLite:** stored locally as `tourism_dw.db`, with `fact_tourism_arrivals` as the main fact table.
 * **CSV:** compressed version of the processed dataset.
 * **CSV for Power BI:** a plain CSV version used as the source for the dashboard.
 
-The SQLite database is used as a catalog and structured representation of the processed data, while the Parquet and CSV outputs provide alternatives depending on the analysis workflow.
+The different formats provide alternatives depending on the analytical workflow and demonstrate how the same processed dataset can be made available for different use cases.
 
 ---
 
@@ -70,15 +87,11 @@ The SQLite database is used as a catalog and structured representation of the pr
 
 With the historical data consolidated, the project moved from data preparation to analysis in Power BI.
 
-The Power BI report is available in:
+The report uses the complete **1989–2024 historical series** to investigate how international tourism to Brazil changed over time.
 
-`powerbi/`
+The analysis explores questions such as:
 
-The analysis uses the complete 1989–2024 series to explore how international tourism to Brazil changed over time.
-
-The dashboard focuses on questions such as:
-
-* How did international tourist arrivals evolve over the 35-year period?
+* How did international tourist arrivals evolve over the 36-year period?
 * Which countries and regions were the main sources of visitors?
 * How did the importance of different points of entry change?
 * What role did each transportation mode play over time?
@@ -86,9 +99,11 @@ The dashboard focuses on questions such as:
 * How did the COVID-19 pandemic affect international tourism?
 * Did patterns observed in the initial 1989 exploration remain consistent over the following decades?
 
-The Power BI report provides an interactive way to explore these patterns rather than limiting the analysis to static charts generated during the data preparation stage.
+Rather than limiting the project to data preparation, the Power BI stage uses the consolidated dataset to transform the historical records into an interactive analytical view.
 
-A PDF export of the report is also included in the `powerbi/` directory for quick access to the analysis without requiring Power BI Desktop.
+The complete report is available in `powerbi/`.
+
+A PDF export is also included for quick inspection without requiring Power BI Desktop.
 
 ---
 
@@ -102,16 +117,17 @@ A PDF export of the report is also included in the `powerbi/` directory for quic
 │   ├── Exploration_1989.ipynb
 │   └── tourism_1989_2024.ipynb
 ├── powerbi/
+│   ├── tourism-arrivals-over-time.png
 │   ├── tourism-analysis.pbix
 │   └── tourism-analysis.pdf
 ├── .gitignore
 ├── .python-version
-├── pyproject.toml
 ├── README.md
+├── pyproject.toml
 └── uv.lock
 ```
 
-The raw datasets are not included in the repository. They can be downloaded from the original source and placed in `data/raw/`.
+The raw datasets and generated processed files are **not included in the repository**. They are generated locally when running the pipeline and are excluded from version control.
 
 ---
 
@@ -131,6 +147,7 @@ The original datasets cover international tourism arrivals in Brazil across diff
 
 * Python 3.12
 * [uv](https://docs.astral.sh/uv/)
+* Power BI Desktop for opening and interacting with the `.pbix` report
 
 ### 1. Clone the repository
 
@@ -153,7 +170,7 @@ Download the annual CSV files from the Ministry of Tourism's open data portal an
 data/raw/
 ```
 
-The files should contain the datasets for the period from 1989 to 2024.
+The files should contain the datasets covering the period from **1989 to 2024**.
 
 ### 4. Run the notebooks
 
@@ -171,7 +188,7 @@ The first notebook explores the original 1989 dataset.
 
 The second processes the complete historical series and generates the analysis-ready outputs.
 
-The resulting dataset can then be loaded into Power BI to explore the historical trends through the report in `powerbi/`.
+The resulting dataset can then be loaded into Power BI to reproduce the analytical stage of the project.
 
 ---
 
@@ -181,4 +198,4 @@ The project is currently **complete**, covering the full workflow from initial d
 
 **Exploration → ETL → Analysis**
 
-This version represents the current scope of the project and is considered finished for now. I may come back to it in the future if I want to experiment with a new tool, technique or analytical approach.
+This version represents the current scope of the project and is considered finished for now. I may return to it in the future if I want to experiment with a new tool, technique or analytical approach.
