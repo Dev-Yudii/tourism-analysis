@@ -1,6 +1,12 @@
 .venv/
-data/*
-!data/raw/
+
+# Raw data
+data/raw/*
 !data/raw/.gitkeep
-!data/processed/
+
+# Processed data
+data/processed/*
 !data/processed/.gitkeep
+
+# Jupyter checkpoints
+notebooks/.ipynb_checkpoints/
