@@ -1,6 +1,6 @@
 # Brazilian Tourism Data Pipeline (1989–2024)
 
-An end-to-end data project built from 36 annual datasets of international tourism arrivals in Brazil, covering the workflow from initial data exploration and historical ETL to Power BI analysis.
+An end-to-end data project built from 36 annual datasets of estimated international tourist arrivals to Brazil, covering the workflow from initial data exploration and historical ETL to Power BI analysis.
 
 The project began with a single-year dataset and evolved into a reproducible pipeline capable of processing the complete historical series from 1989 to 2024.
 
@@ -40,7 +40,7 @@ The original file contained approximately **17,000 records across 12 columns**. 
 * The dataset used **Latin-1 encoding**.
 * The `Chegadas` column contained **588 missing values**.
 * Different variables represented aspects such as country of origin, Brazilian state, point of entry, transportation mode and month.
-* Argentina was the main country of origin in the dataset.
+* Argentina was the most represented country of permanent residence in the dataset.
 * Land transportation was particularly relevant for neighboring countries.
 * The South region played an important role as a gateway for international arrivals.
 * Arrivals showed noticeable seasonality, especially around January and February.
@@ -76,8 +76,7 @@ The pipeline generates several outputs from the consolidated data:
 
 * **Parquet:** partitioned by year for efficient analytical processing.
 * **SQLite:** stored locally as `tourism_dw.db`, with `fact_tourism_arrivals` as the main fact table.
-* **CSV:** compressed version of the processed dataset.
-* **CSV for Power BI:** a plain CSV version used as the source for the dashboard.
+* **CSV:** processed dataset available in compressed format for storage and as a plain CSV used as the Power BI source.
 
 The different formats provide alternatives depending on the analytical workflow and demonstrate how the same processed dataset can be made available for different use cases.
 
@@ -133,11 +132,17 @@ The raw datasets and generated processed files are **not included in the reposit
 
 ## Data source
 
-The data comes from the Brazilian Ministry of Tourism's open data portal:
+Data coverage: 1989–2024. The project scope was defined using the datasets available when the pipeline was developed; newer releases are not included in this version.
 
-**Ministério do Turismo — Dados Abertos**
+The data comes from the Brazilian Ministry of Tourism's open data portal, specifically the "Chegadas de Turistas Internacionais" dataset.
 
-The original datasets cover international tourism arrivals in Brazil across different years and contain information related to origin, destination, entry point, transportation mode and time period.
+The dataset contains information on international tourist arrivals to Brazil, disaggregated by country of permanent residence, month and access method (air, land, maritime or river).
+
+The source data is based on migration records collected at border posts and provided to the Ministry of Tourism by the Federal Police. These records are statistically processed according to the International Recommendations for Tourism Statistics, with the objective of maintaining international comparability. The source methodology also converts nationality information into country of permanent residence, which is used in the dataset to identify the source market of international arrivals.
+
+Source: Ministério do Turismo — Dados Abertos: [Chegadas de Turistas Internacionais](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil)
+
+License: Open Data Commons Open Database License (ODbL)
 
 ---
 
@@ -164,7 +169,7 @@ uv sync
 
 ### 3. Download the raw datasets
 
-Download the annual CSV files from the Ministry of Tourism's open data portal and place them in:
+Download the annual CSV files from the [Ministry of Tourism's open data portal](https://dados.gov.br/dados/conjuntos-dados/estimativas-de-chegadas-de-turistas-internacionais-ao-brasil) and place them in:
 
 ```text
 data/raw/
